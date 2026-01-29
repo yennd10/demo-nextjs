@@ -5,11 +5,25 @@
   --foreground: #171717;
 }
 
+@keyframes fade-in-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --op-var: 0.5;
+
+  --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,4 +82,24 @@ body {
       text-sm font-medium
       hover:bg-slate-50;
   }
+
+  .block-image-text-container {
+    @apply w-full max-w-[1270px] ml-auto mr-auto;
+  }
+
+  .block-image-text {
+    /* 2 cột bằng nhau từ md trở lên, gap 20px (~gap-5) */
+    @apply grid gap-5 md:grid-cols-[40%_60%] xl:grid-cols-[50%_50%] items-start;
+  }
+
+  .text-content {
+    @apply flex flex-row-reverse space-x-reverse space-x-[10px] space-y-[10px] flex-wrap max-w-[300px]; 
+  }
+
+  .number-box {
+    @apply w-[50px] h-[50px] rounded-[10px] flex items-center justify-center
+      text-white font-normal text-[16px] bg-red-500 opacity-(--op-var)
+  }
+
+  
 }
